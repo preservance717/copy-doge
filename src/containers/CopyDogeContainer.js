@@ -10,7 +10,9 @@ const CopyDogeContainer = () => {
   }
 
   const toggleTape = () => {
-    setIsCopying(!isCopying);
+    setTimeout(() => {
+      setIsCopying(!isCopying);
+    }, 500);
   }
 
   return (
