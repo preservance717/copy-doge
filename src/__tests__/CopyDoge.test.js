@@ -31,4 +31,20 @@ describe("test CopyDoge Component", () => {
     const paragraph = screen.getByText("Hello, Doge");
     expect(paragraph).toBeInTheDocument();
   })
+
+  it("should not display input text in paragraph when isCopying is set to false", ()=> {
+    render(<CopyDoge 
+      name=""
+      value="Hello, Doge"
+      handleChange={() => {}}
+      toggleTape={() => {}}
+      isCopying={false}
+    />)
+
+    const input = screen.getByRole("textbox");
+    expect(input).toHaveDisplayValue("Hello, Doge");
+
+    const paragraph = screen.queryByText("Hello, Doge");
+    expect(paragraph).toBeNull();
+  })
 })
