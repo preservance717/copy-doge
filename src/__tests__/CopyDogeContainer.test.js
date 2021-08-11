@@ -14,5 +14,18 @@ describe("test CopyDogeContainer", () => {
     expect(paragraph).toBeInTheDocument();
   })
 
-  
+  it("should remove copied text after adding tape", async () => {
+    render(<CopyDogeContainer />);
+
+    const input = screen.getByRole("textbox");
+    userEvent.type(input, "Hello, Doge");
+
+    const image = screen.getByAltText("copydoge");
+    userEvent.click(image);
+
+    await waitFor(() => {
+      const paragraph = screen.queryByText("Hello, Doge");
+      expect(paragraph).toBeNull();
+    })
+  })
 })
