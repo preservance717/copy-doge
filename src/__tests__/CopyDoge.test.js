@@ -15,4 +15,20 @@ describe("test CopyDoge Component", () => {
     const header = screen.getByText("Copy Cat Mark");
     expect(header).toBeInTheDocument();
   })
+
+  it("should display input text in paragraph when isCopying is set to true", ()=> {
+    render(<CopyDoge 
+      name=""
+      value="Hello, Doge"
+      handleChange={() => {}}
+      toggleTape={() => {}}
+      isCopying={true}
+    />)
+
+    const input = screen.getByRole("textbox");
+    expect(input).toHaveDisplayValue("Hello, Doge");
+
+    const paragraph = screen.getByText("Hello, Doge");
+    expect(paragraph).toBeInTheDocument();
+  })
 })
